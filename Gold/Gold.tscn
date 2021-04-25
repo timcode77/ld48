@@ -1,0 +1,86 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Gold/Gold.gd" type="Script" id=1]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Nuggets" type="Node2D" parent="."]
+
+[node name="Nugget10" type="Polygon2D" parent="Nuggets"]
+position = Vector2( 8, 5.96046e-08 )
+rotation = -0.0459219
+scale = Vector2( 0.908362, 0.531221 )
+color = Color( 1, 0.956863, 0.301961, 1 )
+polygon = PoolVector2Array( -7.45438, -55.4289, -35.2737, -43.6177, -17.8467, -14.959, 0.404295, -15.0438, 24.0922, -39.5256 )
+
+[node name="Nugget0" type="Polygon2D" parent="Nuggets"]
+position = Vector2( 24, 16 )
+rotation = -0.0459219
+scale = Vector2( 1.75, 1.16667 )
+color = Color( 1, 0.905882, 0.537255, 1 )
+polygon = PoolVector2Array( -16, -10.2857, -25.1429, 3.42857, -16, 17.1429, -0.41971, 13.6998, 6.85714, -3.42857 )
+
+[node name="Nugget5" type="Polygon2D" parent="Nuggets"]
+position = Vector2( -56, -32 )
+rotation = -0.0459219
+scale = Vector2( 1.75, 1.16667 )
+color = Color( 1, 0.933333, 0.670588, 1 )
+polygon = PoolVector2Array( -9.13322, -0.629568, -13.9097, 5.90557, -9.55293, 13.0703, 8.7135, 14.3294, 6.85714, -3.42857 )
+
+[node name="Nugget4" type="Polygon2D" parent="Nuggets"]
+position = Vector2( -48, 1.90735e-06 )
+rotation = -0.0830545
+scale = Vector2( 1.75, 1.16667 )
+color = Color( 1, 0.933333, 0.670588, 1 )
+polygon = PoolVector2Array( -13.667, -1.70658, -25.1429, 3.42857, -16, 17.1429, -5.6934, 19.9317, 11.4286, 17.1429, 4.55567, 0.568865 )
+
+[node name="Nugget3" type="Polygon2D" parent="Nuggets"]
+position = Vector2( 24, -56 )
+scale = Vector2( 1.75, 1.16667 )
+color = Color( 1, 0.933333, 0.670588, 1 )
+polygon = PoolVector2Array( -13.2878, -8.5401, -14.0463, 5.12691, -16, 17.1429, 8.35286, 14.8047, 6.85714, -3.42857 )
+
+[node name="Nugget6" type="Polygon2D" parent="Nuggets"]
+position = Vector2( -32, -72 )
+rotation = -0.0732551
+scale = Vector2( 1.75, 1.16667 )
+color = Color( 1, 0.945098, 0.890196, 1 )
+polygon = PoolVector2Array( -9.14286, 0, -14.0463, 5.12691, -9.14286, 13.7143, 0, 13.7143, 4.57143, 0 )
+
+[node name="Nugget7" type="Polygon2D" parent="Nuggets"]
+position = Vector2( 64, -36 )
+rotation = -0.0732551
+scale = Vector2( 1.75, 1.16667 )
+color = Color( 1, 0.945098, 0.890196, 1 )
+polygon = PoolVector2Array( -9.14286, 0, -14.0463, 5.12691, -9.14286, 13.7143, 0, 13.7143, 4.57143, 0 )
+
+[node name="Nugget8" type="Polygon2D" parent="Nuggets"]
+position = Vector2( -24, 32 )
+rotation = -0.0732551
+scale = Vector2( 1.75, 1.16667 )
+color = Color( 1, 0.945098, 0.890196, 1 )
+polygon = PoolVector2Array( -9.14286, 0, -14.0463, 5.12691, -9.14286, 13.7143, 0, 13.7143, 4.57143, 0 )
+
+[node name="Nugget9" type="Polygon2D" parent="Nuggets"]
+position = Vector2( 64, -8 )
+rotation = -0.0732551
+scale = Vector2( 1.75, 1.16667 )
+color = Color( 1, 0.945098, 0.890196, 1 )
+polygon = PoolVector2Array( -9.14286, 0, -14.0463, 5.12691, -9.14286, 13.7143, 0, 13.7143, 4.57143, 0 )
+
+[node name="Nugget1" type="Polygon2D" parent="Nuggets"]
+position = Vector2( 112, -24 )
+rotation = -0.0571016
+scale = Vector2( 1.75, 1.16667 )
+color = Color( 1, 0.933333, 0.670588, 1 )
+polygon = PoolVector2Array( -13.7143, 0, -25.1429, 3.42857, -16, 17.1429, 4.57143, 13.7143, 6.85714, -3.42857 )
+
+[node name="Nugget2" type="Polygon2D" parent="Nuggets"]
+position = Vector2( 80, 16 )
+rotation = -0.0571016
+scale = Vector2( 1.75, 1.16667 )
+color = Color( 1, 0.933333, 0.670588, 1 )
+polygon = PoolVector2Array( -13.7143, 0, -18.5168, 5.2806, -16, 17.1429, 8.34527, 21.3206, 6.85714, -3.42857 )
+
+[node name="Tween" type="Tween" parent="."]
