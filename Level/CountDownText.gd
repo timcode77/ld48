@@ -13,7 +13,10 @@ func _start():
 
 func _on_CountDownTimer_timeout():
 	_time -= 1
+	
+	if _time == 10:
+		modulate = Color(1,0,0,1)
+	
 	if _time == 0:
-		#NUKE THE SITE FROM ORBIT
 		Global.emit_signal("_game_over") 
 	_display_time()

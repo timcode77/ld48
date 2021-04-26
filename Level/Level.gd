@@ -41,10 +41,9 @@ func _start_line():
 	#player is starting a new line. flag that they have not inputted anything for this line
 	_player_input_registered = false
 	#reset a bunch of stuff
-	$Player.scale = Vector2(1,1)
-	$Player.modulate = Color(1,1,1,1)
-	_player._show_arrow(null)
-	
+	#$Player._arc_radius = Vector2(1,1)
+	#$Player.modulate = Color(1,1,1,1)
+	_player._boost_build_up_reset()
 	#by definition they are not stopped!
 	_player_stopped = false
 	
@@ -88,9 +87,9 @@ func _start_line():
 	#player speed boost available visual feedback
 	var threshold = traversal_duration - _input_t_threshold
 	var start_boost_tween = threshold - 500 #just a magic number
-	$BoostTween.interpolate_property($Player,"scale",Vector2(1,1),Vector2(1.2,1.2),500.0/1000.0,Tween.TRANS_LINEAR,Tween.EASE_IN,start_boost_tween/1000.0)
-	$BoostTween.interpolate_property($Player,"modulate",Color(1,1,1,1),Color.turquoise,500.0/1000.0,Tween.TRANS_LINEAR,Tween.EASE_IN,start_boost_tween/1000.0)
-	$BoostTween.start()
+	_player._boost_build_up(500,start_boost_tween)
+	#$BoostTween.interpolate_property($Player,"modulate",Color(1,1,1,1),Color.turquoise,500.0/1000.0,Tween.TRANS_LINEAR,Tween.EASE_IN,start_boost_tween/1000.0)
+	#$BoostTween.start()
 
 func _on_BoostTween_tween_completed(_object, _key):
 	#$Player.modulate = Color(1,1,0,1)
@@ -140,7 +139,7 @@ func _process_player_movement(delta):
 		if (_player.position + vel).y < dest.y:
 			_player.position += vel 
 	
-		if (_player.position + vel) == dest or (_player.position + vel).y > dest.y: #WARNING - should be OR player y position > dest y position
+		if (_player.position + vel) == dest or (_player.position + vel).y > dest.y:
 			
 			_old_tri = _current_tri
 			
@@ -156,8 +155,9 @@ func _process_player_movement(delta):
 				_player_stopped = true
 				$OtherSounds/SpeedPenalty.play()
 				$Player._emit_particles(false)
-				$Player.scale = Vector2(1,1)
-				$Player.modulate = Color(1,1,1,1)
+				#$Player.scale = Vector2(1,1)
+				#$Player.modulate = Color(1,1,1,1)
+				$Player/Camera2D._screen_shake()
 
 #ugh need a state machine?
 func _input(event): #WARNING opportunity for breaks or return here?
@@ -167,7 +167,7 @@ func _input(event): #WARNING opportunity for breaks or return here?
 			_do_timing(OS.get_ticks_msec())
 			_player_input_registered = true
 			
-			# was the player stopped? if so, start 'em.
+			# was the player stopped? if so, start them.
 			if _player_stopped:
 				_current_tri = _next_tri
 				_start_line()
@@ -180,12 +180,12 @@ func _input(event): #WARNING opportunity for breaks or return here?
 			_do_timing(OS.get_ticks_msec())
 			_player_input_registered = true
 			
-			# was the player stopped? if so, start 'em.
+			# was the player stopped? if so, start them.
 			if _player_stopped:
 				_current_tri = _next_tri
 				_start_line()
 			else:
-				#player isn't stopped and pressed left so show the left arrow
+				#player isn't stopped and pressed right so show the right arrow
 				_player._show_arrow(1)
 			
 	else: #WARNING special case for when the level has not started yet
@@ -194,17 +194,19 @@ func _input(event): #WARNING opportunity for breaks or return here?
 			_next_line_index = 0
 			_start_line()
 			_level_started = true
+			$OtherSounds/Music.play()
 		if event.is_action_pressed("ui_right"):
 			$CanvasLayer_UI/CountDownText._start()
 			_next_line_index = 1
 			_start_line()
 			_level_started = true
+			$OtherSounds/Music.play()
 
 func _do_timing(t):
 	#how much time will it take to traverse this line at this speed?
 	var traversal_duration = _get_traversal_duration()
 	var time_since_start = t - _line_start_time
-	var diff = traversal_duration - time_since_start
+	var diff = traversal_duration - time_since_start #diff is how much time has elapsed since start of the line
 	#print(diff)
 	if diff < 0:
 		_speed = _start_speed
@@ -218,7 +220,7 @@ func _do_timing(t):
 			else:
 				_next_tri._show_speed_boost(0)
 		else:
-			pass
+			$OtherSounds/NoSpeedUp.play()
 
 func _get_traversal_duration():
 	return _get_current_line_length() / _speed * 1000 #msecs

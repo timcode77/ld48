@@ -21,7 +21,7 @@ config/icon="res://Tri/icon.png"
 
 [audio]
 
-output_latency=30
+output_latency=60
 
 [autoload]
 
@@ -39,6 +39,7 @@ window/stretch/aspect="keep"
 [global]
 
 pixel=false
+buffer=false
 
 [rendering]
 
@@ -46,4 +47,3 @@ quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
 environment/default_clear_color=Color( 0, 0, 0, 1 )
-environment/default_environment="res://default_env.tres"
